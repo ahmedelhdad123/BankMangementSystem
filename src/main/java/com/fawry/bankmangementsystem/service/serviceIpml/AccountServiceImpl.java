@@ -64,13 +64,13 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDto findAccountByCardNumber(String cardNumber) {
         Account account=accountRepo.findByCardNumber(cardNumber)
-                .orElseThrow(() -> new AccountNotFound("Account not found with CartNumber Is" + cardNumber));
+                .orElseThrow(() -> new AccountNotFound("Account not found with CartNumber Is: " + cardNumber));
         return accountMapper.toDto(account);
     }
 
     private User CheckUser(String email) {
         User user = userRepo.findByEmail(email)
-                .orElseThrow(() -> new AccountNotFound("Account not found"));
+                .orElseThrow(() -> new AccountNotFound("Account not found With email: " + email));
         return user;
     }
 

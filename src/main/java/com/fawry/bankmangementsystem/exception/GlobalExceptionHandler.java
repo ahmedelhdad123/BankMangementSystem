@@ -5,21 +5,44 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.time.LocalDateTime;
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(AccountNotFound.class)
-    public ResponseEntity<String> handleAccountNotFound(AccountNotFound ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ApiException> handleAccountNotFound(AccountNotFound ex) {
+
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ApiException apiException=new ApiException(
+                ex.getMessage(),
+                status,
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(apiException, status);
     }
 
     @ExceptionHandler(OperationNotAllowed.class)
-    public ResponseEntity<String> handleOperationNotAllowed(OperationNotAllowed ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ApiException> handleOperationNotAllowed(OperationNotAllowed ex) {
+
+        HttpStatus status = HttpStatus.METHOD_NOT_ALLOWED;
+        ApiException apiException=new ApiException(
+                ex.getMessage(),
+                status,
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(apiException, status);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleGenericException(Exception ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ApiException> handleGenericException(Exception ex) {
+
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+        ApiException apiException=new ApiException(
+                ex.getMessage(),
+                status,
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(apiException, status);
     }
 }
