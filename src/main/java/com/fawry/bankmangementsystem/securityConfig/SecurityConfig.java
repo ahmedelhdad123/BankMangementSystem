@@ -1,4 +1,4 @@
-package com.fawry.bankmangementsystem.security;
+package com.fawry.bankmangementsystem.securityConfig;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -20,9 +20,9 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .anyRequest().permitAll() // Allow all requests
+                                .anyRequest().permitAll()
                 )
-                .csrf(AbstractHttpConfigurer::disable); // Disable CSRF protection
+                .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
     @Bean

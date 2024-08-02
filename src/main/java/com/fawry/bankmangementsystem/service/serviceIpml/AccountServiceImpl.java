@@ -8,7 +8,7 @@ import com.fawry.bankmangementsystem.dto.mabstrauct.AccountMapper;
 import com.fawry.bankmangementsystem.dto.mabstrauct.UserMapper;
 import com.fawry.bankmangementsystem.entity.Account;
 import com.fawry.bankmangementsystem.entity.User;
-import com.fawry.bankmangementsystem.exception.AccountNotFound;
+import com.fawry.bankmangementsystem.exception.AccountException;
 import com.fawry.bankmangementsystem.repository.AccountRepo;
 import com.fawry.bankmangementsystem.repository.UserRepo;
 import com.fawry.bankmangementsystem.service.AccountService;
@@ -35,6 +35,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDto createAccount(UserDto userDto) {
+        if (accountRepo.existsByEmail(userDto.getEmail())) {
+            throw new AccountException("Email already exists");
+        }
         User user=userMapper.ToUser(userDto);
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
@@ -64,13 +67,13 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDto findAccountByCardNumber(String cardNumber) {
         Account account=accountRepo.findByCardNumber(cardNumber)
-                .orElseThrow(() -> new AccountNotFound("Account not found with CartNumber Is: " + cardNumber));
+                .orElseThrow(() -> new AccountException("Account not found with CartNumber Is: " + cardNumber));
         return accountMapper.toDto(account);
     }
 
     private User CheckUser(String email) {
         User user = userRepo.findByEmail(email)
-                .orElseThrow(() -> new AccountNotFound("Account not found With email: " + email));
+                .orElseThrow(() -> new AccountException("Account not found With email: " + email));
         return user;
     }
 

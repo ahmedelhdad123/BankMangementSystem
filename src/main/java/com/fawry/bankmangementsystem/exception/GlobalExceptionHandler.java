@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(AccountNotFound.class)
-    public ResponseEntity<ApiException> handleAccountNotFound(AccountNotFound ex) {
+    @ExceptionHandler(AccountException.class)
+    public ResponseEntity<ApiException> handleAccountNotFound(AccountException ex) {
 
         HttpStatus status = HttpStatus.NOT_FOUND;
         ApiException apiException=new ApiException(
@@ -22,8 +22,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(apiException, status);
     }
 
-    @ExceptionHandler(OperationNotAllowed.class)
-    public ResponseEntity<ApiException> handleOperationNotAllowed(OperationNotAllowed ex) {
+    @ExceptionHandler(OperationException.class)
+    public ResponseEntity<ApiException> handleOperationNotAllowed(OperationException ex) {
 
         HttpStatus status = HttpStatus.METHOD_NOT_ALLOWED;
         ApiException apiException=new ApiException(
