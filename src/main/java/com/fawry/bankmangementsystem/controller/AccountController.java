@@ -17,11 +17,6 @@ public class AccountController {
 
     private final AccountService accountService;
 
-    @PostMapping
-    public ResponseEntity<AccountDto> createAccount(@RequestBody UserDto userDto) {
-        AccountDto accountDto=accountService.createAccount(userDto);
-        return ResponseEntity.ok().body(accountDto);
-    }
 
     @GetMapping("{email}")
     public ResponseEntity<List<AccountDto>> getAccounts(@PathVariable("email") String email) {

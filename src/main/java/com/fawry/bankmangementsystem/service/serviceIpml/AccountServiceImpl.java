@@ -3,9 +3,7 @@ package com.fawry.bankmangementsystem.service.serviceIpml;
 
 
 import com.fawry.bankmangementsystem.dto.AccountDto;
-import com.fawry.bankmangementsystem.dto.UserDto;
 import com.fawry.bankmangementsystem.dto.mabstrauct.AccountMapper;
-import com.fawry.bankmangementsystem.dto.mabstrauct.UserMapper;
 import com.fawry.bankmangementsystem.entity.Account;
 import com.fawry.bankmangementsystem.entity.User;
 import com.fawry.bankmangementsystem.exception.AccountException;
@@ -14,7 +12,6 @@ import com.fawry.bankmangementsystem.repository.UserRepo;
 import com.fawry.bankmangementsystem.service.AccountService;
 import com.fawry.bankmangementsystem.utils.Utils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,24 +25,10 @@ import java.util.stream.Collectors;
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepo accountRepo;
-    private final UserMapper userMapper;
     private final UserRepo userRepo;
     private final AccountMapper accountMapper;
-    private final PasswordEncoder passwordEncoder;
 
-    @Override
-    public AccountDto createAccount(UserDto userDto) {
-        if (accountRepo.existsByEmail(userDto.getEmail())) {
-            throw new AccountException("Email already exists");
-        }
-        User user=userMapper.ToUser(userDto);
-        String hashedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hashedPassword);
-        userRepo.save(user);
-        Account account = accountMapper.toAccount(generateUniqueCardNumber(),Utils.generateCVV(),user);
-        accountRepo.save(account);
-        return accountMapper.toDto(account);
-    }
+
 
     @Override
     public List<AccountDto> getMyAccounts(String email) {
