@@ -1,7 +1,6 @@
 package com.fawry.bankmangementsystem.dto;
 
 import jakarta.persistence.Column;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,5 +18,5 @@ public class UserProfileDto {
     private String email;
 
     @ToString.Exclude
-    private List<AccountDto> accounts;
+    private List<AccountProfileDto> accounts;
 }

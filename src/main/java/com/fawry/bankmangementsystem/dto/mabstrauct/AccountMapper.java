@@ -2,6 +2,7 @@ package com.fawry.bankmangementsystem.dto.mabstrauct;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fawry.bankmangementsystem.dto.AccountDto;
+import com.fawry.bankmangementsystem.dto.AccountProfileDto;
 import com.fawry.bankmangementsystem.entity.Account;
 import com.fawry.bankmangementsystem.entity.User;
 import org.mapstruct.Mapper;
@@ -18,5 +19,8 @@ public interface AccountMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "balance",constant = "0.0")
     Account toAccount(String cardNumber, String cvv, User user);
+
+
+    AccountProfileDto toAccountProfileDto(Account account);
 
 }
