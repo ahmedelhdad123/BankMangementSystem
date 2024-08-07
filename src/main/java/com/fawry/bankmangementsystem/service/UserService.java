@@ -5,6 +5,5 @@ import com.fawry.bankmangementsystem.dto.UserDto;
 import com.fawry.bankmangementsystem.dto.UserProfileDto;
 
 public interface UserService {
-    UserProfileDto getUserProfile(String email);
-    AccountDto createUser(UserDto userDto);
+    UserProfileDto getUserProfile();
 }

@@ -10,6 +10,7 @@ import com.fawry.bankmangementsystem.repository.UserRepo;
 import com.fawry.bankmangementsystem.service.AccountService;
 import com.fawry.bankmangementsystem.utils.Utils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,14 +27,16 @@ public class AccountServiceImpl implements AccountService {
     private final AccountMapper accountMapper;
 
     @Override
-    public List<AccountDto> getMyAccounts(String email) {
+    public List<AccountDto> getMyAccounts() {
+        String email= SecurityContextHolder.getContext().getAuthentication().getName();
         User user = findUserByEmail(email);
         List<Account> accounts = accountRepo.findByUserId(user.getId());
         return mapAccountsToDtos(accounts);
     }
 
     @Override
-    public AccountDto createCartInfo(String email) {
+    public AccountDto createCartInfo() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = findUserByEmail(email);
         Account account = createAccountForUser(user);
         accountRepo.save(account);
@@ -41,8 +44,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountDto findAccountByCardNumber(String cardNumber) {
-        Account account = findAccountByCardNumberOrThrow(cardNumber);
+    public AccountDto findAccountByCardNumber() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = findUserByEmail(email);
+
+        Account account = findAccountByCardNumberOrThrow(user.getAccounts().get(0).getCardNumber());
         return accountMapper.toDto(account);
     }
 

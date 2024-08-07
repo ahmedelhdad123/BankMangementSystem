@@ -3,6 +3,7 @@ package com.fawry.bankmangementsystem.dto.mabstrauct;
 import com.fawry.bankmangementsystem.dto.UserDto;
 import com.fawry.bankmangementsystem.dto.UserProfileDto;
 import com.fawry.bankmangementsystem.entity.User;
+import com.fawry.bankmangementsystem.model.authentication.RegisterRequestModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -11,6 +12,9 @@ public interface UserMapper {
 
     UserDto ToDto(User user);
     User ToUser(UserDto userDto);
+
+
+    User ToUserRegister(RegisterRequestModel registerRequestModel);
 
 
     @Mapping(source = "user.name", target = "name")

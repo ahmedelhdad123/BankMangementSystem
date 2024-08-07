@@ -9,8 +9,8 @@ import java.util.List;
 public interface AccountService {
 
 
-    List<AccountDto> getMyAccounts(String email);
-    AccountDto createCartInfo(String email);
-    AccountDto findAccountByCardNumber(String cardNumber);
+    List<AccountDto> getMyAccounts();
+    AccountDto createCartInfo();
+    AccountDto findAccountByCardNumber();
 
 }

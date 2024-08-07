@@ -1,14 +1,13 @@
 package com.fawry.bankmangementsystem.controller;
 
-
-import com.fawry.bankmangementsystem.dto.AccountDto;
-import com.fawry.bankmangementsystem.dto.UserDto;
+import com.fawry.bankmangementsystem.model.ResponseModel;
 import com.fawry.bankmangementsystem.service.AccountService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/accounts")
@@ -18,21 +17,42 @@ public class AccountController {
     private final AccountService accountService;
 
 
-    @GetMapping("{email}")
-    public ResponseEntity<List<AccountDto>> getAccounts(@PathVariable("email") String email) {
-        List<AccountDto> accountDtoList=accountService.getMyAccounts(email);
-        return ResponseEntity.ok().body(accountDtoList);
+    @GetMapping("/myAccount")
+    public ResponseEntity<ResponseModel> getAccounts() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ResponseModel
+                        .builder()
+                        .status(HttpStatus.OK)
+                        .success(true)
+                        .data(accountService.getMyAccounts())
+                        .build()
+                );
     }
 
-    @GetMapping("findByCart/{cartNumber}")
-    public ResponseEntity<AccountDto> getAccountsByCartNumber(@PathVariable("cartNumber") String cartNumber) {
-        AccountDto accountDto=accountService.findAccountByCardNumber(cartNumber);
-        return ResponseEntity.ok().body(accountDto);
+    @GetMapping("/cardNumber")
+    public ResponseEntity<ResponseModel> getAccountsByCartNumber() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ResponseModel
+                        .builder()
+                        .status(HttpStatus.OK)
+                        .success(true)
+                        .data(accountService.findAccountByCardNumber())
+                        .build()
+                );
     }
 
-    @GetMapping("/addCartInfo/{email}")
-    public ResponseEntity<AccountDto> addCartInfo(@PathVariable("email") String email) {
-        AccountDto accountDto=accountService.createCartInfo(email);
-        return ResponseEntity.ok().body(accountDto);
+    @GetMapping("/addCart")
+    public ResponseEntity<ResponseModel> addCartInfo() {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(ResponseModel
+                        .builder()
+                        .status(HttpStatus.CREATED)
+                        .success(true)
+                        .data(accountService.createCartInfo())
+                        .build()
+                );
     }
 }

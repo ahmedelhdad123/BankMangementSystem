@@ -1,6 +1,5 @@
 package com.fawry.bankmangementsystem.dto.mabstrauct;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fawry.bankmangementsystem.dto.AccountDto;
 import com.fawry.bankmangementsystem.dto.AccountProfileDto;
 import com.fawry.bankmangementsystem.entity.Account;

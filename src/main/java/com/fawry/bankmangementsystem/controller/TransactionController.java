@@ -2,9 +2,11 @@ package com.fawry.bankmangementsystem.controller;
 
 import com.fawry.bankmangementsystem.dto.TransactionDTO;
 import com.fawry.bankmangementsystem.model.DepositRequestModel;
+import com.fawry.bankmangementsystem.model.ResponseModel;
 import com.fawry.bankmangementsystem.model.WithdrawRequestModel;
 import com.fawry.bankmangementsystem.service.TransactionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,14 +21,28 @@ public class TransactionController{
 
 
     @PostMapping("/deposit")
-    public ResponseEntity<TransactionDTO> deposit(@RequestBody DepositRequestModel depositRequestModel){
-        TransactionDTO transactionDTO = transactionService.deposit(depositRequestModel);
-        return ResponseEntity.ok(transactionDTO);
+    public ResponseEntity<ResponseModel> deposit(@RequestBody DepositRequestModel depositRequestModel){
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ResponseModel
+                        .builder()
+                        .status(HttpStatus.OK)
+                        .success(true)
+                        .data(transactionService.deposit(depositRequestModel))
+                        .build()
+                );
     }
 
     @PostMapping("/withdraw")
-    public ResponseEntity<TransactionDTO> withdraw(@RequestBody WithdrawRequestModel withdrawRequestModel) {
-            TransactionDTO transactionDTO = transactionService.withdraw(withdrawRequestModel);
-            return ResponseEntity.ok(transactionDTO);
+    public ResponseEntity<ResponseModel> withdraw(@RequestBody WithdrawRequestModel withdrawRequestModel) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ResponseModel
+                        .builder()
+                        .status(HttpStatus.OK)
+                        .success(true)
+                        .data(transactionService.withdraw(withdrawRequestModel))
+                        .build()
+                );
     }
 }
