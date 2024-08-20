@@ -1,4 +1,4 @@
-package com.fawry.bankmangementsystem;
+package com.fawry.bankmangementsystem.configraion;
 
 import com.fawry.bankmangementsystem.exception.AccountException;
 import com.fawry.bankmangementsystem.repository.UserRepo;

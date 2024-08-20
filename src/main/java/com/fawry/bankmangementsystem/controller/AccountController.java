@@ -1,6 +1,6 @@
 package com.fawry.bankmangementsystem.controller;
 
-import com.fawry.bankmangementsystem.model.ResponseModel;
+import com.fawry.bankmangementsystem.model.response.ResponseModel;
 import com.fawry.bankmangementsystem.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,8 +1,8 @@
 package com.fawry.bankmangementsystem.service;
 
 import com.fawry.bankmangementsystem.dto.TransactionDTO;
-import com.fawry.bankmangementsystem.model.DepositRequestModel;
-import com.fawry.bankmangementsystem.model.WithdrawRequestModel;
+import com.fawry.bankmangementsystem.model.transaction.deposit.DepositRequestModel;
+import com.fawry.bankmangementsystem.model.transaction.withdraw.WithdrawRequestModel;
 
 public interface TransactionService {
 

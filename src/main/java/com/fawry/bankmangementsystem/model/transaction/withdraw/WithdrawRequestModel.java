@@ -1,4 +1,4 @@
-package com.fawry.bankmangementsystem.model;
+package com.fawry.bankmangementsystem.model.transaction.withdraw;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

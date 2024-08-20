@@ -1,6 +1,6 @@
 package com.fawry.bankmangementsystem.controller;
 
-import com.fawry.bankmangementsystem.model.ResponseModel;
+import com.fawry.bankmangementsystem.model.response.ResponseModel;
 import com.fawry.bankmangementsystem.model.authentication.LoginRequestModel;
 import com.fawry.bankmangementsystem.model.authentication.RegisterRequestModel;
 import com.fawry.bankmangementsystem.service.AuthenticationService;

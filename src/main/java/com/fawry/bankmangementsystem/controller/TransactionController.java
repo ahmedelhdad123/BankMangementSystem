@@ -1,9 +1,8 @@
 package com.fawry.bankmangementsystem.controller;
 
-import com.fawry.bankmangementsystem.dto.TransactionDTO;
-import com.fawry.bankmangementsystem.model.DepositRequestModel;
-import com.fawry.bankmangementsystem.model.ResponseModel;
-import com.fawry.bankmangementsystem.model.WithdrawRequestModel;
+import com.fawry.bankmangementsystem.model.transaction.deposit.DepositRequestModel;
+import com.fawry.bankmangementsystem.model.response.ResponseModel;
+import com.fawry.bankmangementsystem.model.transaction.withdraw.WithdrawRequestModel;
 import com.fawry.bankmangementsystem.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

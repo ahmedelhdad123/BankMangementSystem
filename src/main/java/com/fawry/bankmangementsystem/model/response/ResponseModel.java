@@ -1,4 +1,4 @@
-package com.fawry.bankmangementsystem.model;
+package com.fawry.bankmangementsystem.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
