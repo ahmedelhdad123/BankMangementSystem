@@ -43,7 +43,7 @@ public class AccountController {
                 );
     }
 
-    @PostMapping("/addCart")
+    @GetMapping("/addCard")
     public ResponseEntity<ResponseModel> addCartInfo() {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
