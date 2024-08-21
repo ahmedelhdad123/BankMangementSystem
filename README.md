@@ -42,6 +42,7 @@ To run the Bank Management System locally, ensure you have the following prerequ
 - MySQL(Workbench)
 - Maven 
 - Docker
+- Swagger
 ## BankApi
  - [![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/20573769/2sA3rzKsPu)
 
