@@ -52,6 +52,15 @@ public class AccountServiceImpl implements AccountService {
         return accountMapper.toDto(account);
     }
 
+    @Override
+    public AccountDto deleteAccountByCardNumber(String cardNumber) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = findUserByEmail(email);
+        Account account = findAccountByCardNumberOrThrow(cardNumber);
+        accountRepo.delete(account);
+        return accountMapper.toDto(account);
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     private User findUserByEmail(String email) {

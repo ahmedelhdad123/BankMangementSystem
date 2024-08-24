@@ -56,4 +56,17 @@ public class AccountController {
                         .build()
                 );
     }
+
+    @DeleteMapping("/{cardNumber}")
+    public ResponseEntity<ResponseModel> deleteAccount(@PathVariable String cardNumber) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ResponseModel
+                        .builder()
+                        .status(HttpStatus.OK)
+                        .success(true)
+                        .data(accountService.deleteAccountByCardNumber(cardNumber))
+                        .build()
+                );
+    }
 }

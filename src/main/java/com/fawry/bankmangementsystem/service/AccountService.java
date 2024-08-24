@@ -12,5 +12,6 @@ public interface AccountService {
     List<AccountDto> getMyAccounts();
     AccountDto createCartInfo();
     AccountDto findAccountByCardNumber();
+    AccountDto deleteAccountByCardNumber(String cardNumber);
 
 }
