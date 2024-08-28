@@ -47,7 +47,6 @@ public class AccountServiceImpl implements AccountService {
     public AccountDto findAccountByCardNumber() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = findUserByEmail(email);
-
         Account account = findAccountByCardNumberOrThrow(user.getAccounts().get(0).getCardNumber());
         return accountMapper.toDto(account);
     }

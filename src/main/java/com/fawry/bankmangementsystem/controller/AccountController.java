@@ -44,7 +44,7 @@ public class AccountController {
     }
 
 
-    @GetMapping("/addCard")
+    @PostMapping("/addCard")
     public ResponseEntity<ResponseModel> addCartInfo() {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -58,15 +58,10 @@ public class AccountController {
     }
 
     @DeleteMapping("/{cardNumber}")
-    public ResponseEntity<ResponseModel> deleteAccount(@PathVariable String cardNumber) {
+    public ResponseEntity<Void> deleteAccount(@PathVariable String cardNumber) {
+        accountService.deleteAccountByCardNumber(cardNumber);
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(ResponseModel
-                        .builder()
-                        .status(HttpStatus.OK)
-                        .success(true)
-                        .data(accountService.deleteAccountByCardNumber(cardNumber))
-                        .build()
-                );
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 }
